@@ -7,9 +7,11 @@ import com.web2.backend.repository.AlbumRepository;
 import com.web2.backend.repository.ArtistRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/home")
@@ -43,5 +45,13 @@ public class HomeController {
         }
 
         return artistRepository.findAll();
+    }
+
+    // Ex: GET /api/home/artists/1
+    @GetMapping("/artists/{id}")
+    public ResponseEntity<Artist> getArtistById(@PathVariable Long id) {
+        Optional<Artist> artist = artistRepository.findById(id);
+        return artist.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
