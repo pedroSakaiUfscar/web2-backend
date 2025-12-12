@@ -13,6 +13,9 @@ public class Artist {
     private String name;
     private String genre;
 
+    private String city;
+    private String state;
+
     @Column(length = 1000)
     private String imageUrl;
 }

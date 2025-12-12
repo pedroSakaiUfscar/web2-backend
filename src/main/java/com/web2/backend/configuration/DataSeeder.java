@@ -34,12 +34,12 @@ public class DataSeeder implements CommandLineRunner {
     }
 
     private void seedArtists() {
-        if (artistRepository.count() == 0) {
-            createArtist("Taylor Swift", "Alternative Pop", "https://i.imgur.com/fXymOor.jpeg");
-            createArtist("Lady Gaga", "Electronic", "https://i.imgur.com/cbTBM6m.jpeg");
-            createArtist("Olivia Rodrigo", "Pop Rock", "https://i.imgur.com/UedGQ4u_d.webp?maxwidth=520&shape=thumb&fidelity=high");
-            createArtist("Bad Bunny", "Reggaeton", "https://media.gettyimages.com/id/2158605797/pt/foto/paris-france-bad-bunny-attends-the-dior-homme-menswear-spring-summer-2025-show-as-part-of.jpg?s=612x612&w=0&k=20&c=o2frjOVa0g2Zf6lUywkTVc4RqLJIgnFyLqArff63ISQ=");
-        }
+        createArtist("Stefani Alisson", "Pop Indie", "São Paulo", "SP", "https://i.imgur.com/pic.png"); // Use a URL correta da imagem dela
+
+        createArtist("Taylor Swift", "Pop Alternativo", "São Paulo", "SP", "https://i.imgur.com/fXymOor.jpeg");
+        createArtist("Lady Gaga", "Eletrônica", "Rio de Janeiro", "RJ", "https://i.imgur.com/cbTBM6m.jpeg");
+        createArtist("Lagum", "Pop", "Campinas", "SP", "https://i.scdn.co/image/ab6761610000e5eb6e9a16624a0604077699363d");
+        createArtist("Bad Bunny", "Reggaeton", "Rio de Janeiro", "RJ", "https://media.gettyimages.com/id/2158605797/pt/foto/paris-france-bad-bunny-attends-the-dior-homme-menswear-spring-summer-2025-show-as-part-of.jpg?s=612x612&w=0&k=20&c=o2frjOVa0g2Zf6lUywkTVc4RqLJIgnFyLqArff63ISQ=");
     }
 
     // Helper methods
@@ -51,11 +51,13 @@ public class DataSeeder implements CommandLineRunner {
         albumRepository.save(a);
     }
 
-    private void createArtist(String name, String genre, String url) {
-        Artist a = new Artist();
-        a.setName(name);
-        a.setGenre(genre);
-        a.setImageUrl(url);
-        artistRepository.save(a);
+    private void createArtist(String name, String genre, String city, String state, String url) {
+        Artist artist = new Artist();
+        artist.setName(name);
+        artist.setGenre(genre);
+        artist.setCity(city);
+        artist.setState(state);
+        artist.setImageUrl(url);
+        artistRepository.save(artist);
     }
 }
